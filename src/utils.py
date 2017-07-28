@@ -22,7 +22,7 @@ def refresh_username_list():
 
 def get_all_usernames(last_user=-1, steem=None):
     if not steem:
-        steem = Steem()
+        steem = Steemd(nodes=mynode)
 
     usernames = steem.lookup_accounts(last_user, 1000)
     batch = []
@@ -35,7 +35,7 @@ def get_all_usernames(last_user=-1, steem=None):
 
 def get_usernames_batch(last_user=-1, steem=None):
     if not steem:
-        steem = Steem()
+        steem = Steemd(nodes=mynode)
 
     return steem.lookup_accounts(last_user, 1000)
 

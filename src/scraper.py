@@ -27,7 +27,7 @@ steem = Steemd(nodes=mynode)
 # ---------------------------
 def scrape_all_users(mongo):
     """Scrape all existing users and insert/update their entries in Accounts collection."""
-    steem = Steem()
+    steem = Steemd(nodes=mynode)
     s = Settings(mongo)
 
     account_checkpoint = s.account_checkpoint()
@@ -84,7 +84,7 @@ def scrape_operations(mongo):
                 update_comment_async.delay(post_identifier, recursive=True)
 
         # if we're close to blockchain head, enable batching
-        recent_blocks = 20 * 60 * 24 * 10  # 7 days worth of blocks
+        recent_blocks = 20 * 60 * 24 * 1  # 1 days worth of blocks
         if last_block > _head_block_num - recent_blocks:
             batch_dicts.append(parse_operation(operation))
 
@@ -138,10 +138,10 @@ def validate_operations(mongo):
 # Blockchain
 # ----------
 def scrape_blockchain(mongo):
-    s = Steem()
+    s = Steemd(nodes=mynode)
     # see how far behind we are
     missing = list(range(last_block_num(mongo), s.last_irreversible_block_num))
-
+    log.info('Missing blocks %d' % len(missing))
     # if we are far behind blockchain head
     # split work in chunks of 100
     if len(missing) > 100:

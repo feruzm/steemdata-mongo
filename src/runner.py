@@ -46,7 +46,7 @@ def run_worker(worker_name):
             print(traceback.format_exc())
 
         # prevent IO overflow
-        time.sleep(5)
+        time.sleep(6)
 
 
 if __name__ == '__main__':
