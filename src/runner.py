@@ -52,10 +52,13 @@ def run_worker(worker_name):
 if __name__ == '__main__':
     multiprocessing.set_start_method('spawn')
     workers = [
-        'scrape_all_users',
         'scrape_operations',
+        'scrape_blockchain',
+        'validate_operations',
+        'scrape_all_users',
         'scrape_prices',
-        # 'scrape_misc',
+        #'refresh_dbstats',
+        #'override'
     ]
 
     with Pool(len(workers)) as p:

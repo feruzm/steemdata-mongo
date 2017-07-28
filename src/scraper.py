@@ -18,6 +18,10 @@ from utils import fetch_price_feed, get_usernames_batch
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
 
+from steem.steemd import Steemd
+
+mynode = ['http://localhost:8090']
+steem = Steemd(nodes=mynode)
 
 # Accounts, AccountOperations
 # ---------------------------

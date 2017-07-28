@@ -9,7 +9,7 @@ from utils import log_exceptions, time_delta
 
 # override a node for perf reasons
 _custom_node = False
-
+#mynode = ['http://localhost:8090']
 
 def new_celery(worker_name: str):
     return Celery(worker_name,
@@ -59,8 +59,8 @@ def override_steemd():
 
     if not _custom_node:
         steemd_nodes = [
-            'https://gtg.steem.house:8090',
-            'https://steemd.steemit.com',
+            'http://localhost:8090' #'https://gtg.steem.house:8090',
+            #'https://steemd.steemit.com',
         ]
         set_shared_steemd_instance(Steemd(nodes=steemd_nodes))
         _custom_node = True
@@ -82,7 +82,7 @@ if str(caller_name()) != '__main__':
                          host=os.getenv('DB_HOST', MONGO_HOST),
                          port=os.getenv('DB_PORT', MONGO_PORT))
 
-    # override_steemd()
+    #override_steemd()
 
 # task definitions
 # ----------------

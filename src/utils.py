@@ -5,9 +5,12 @@ from funcy.decorators import contextmanager
 from steem import Steem
 from steemdata.helpers import simple_cache, create_cache
 from steemdata.markets import Markets
+from steem.steemd import Steemd
 
 usernames_cache = create_cache()
-
+#mynode = ['http://locahost:8090']
+mynode = ['http://localhost:8090'] 
+steem = Steemd(nodes=mynode)
 
 @simple_cache(usernames_cache, timeout=30 * 60)
 def refresh_username_list():
@@ -61,3 +64,4 @@ def log_exceptions():
 def time_delta(item_time):
     delta = datetime.utcnow().replace(tzinfo=None) - item_time.replace(tzinfo=None)
     return delta.seconds
+
