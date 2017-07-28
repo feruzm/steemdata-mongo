@@ -28,9 +28,9 @@ $ sudo apt-get install -y mongodb-org
 $ service mongod status
 $ mongo
 
-> db.createUser({user:'steemit',pwd:'steemit',roles:['readWrite']})
+> db.createUser({user:'steem',pwd:'steem',roles:['readWrite']})
 ```
-Create a read-only steemit user from createUser.mongo from mongodb shell when mongo first starts.
+Create a read-only user from createUser.mongo from mongodb shell when mongo first starts.
 
 
 #### Blockchain db requires first entry 
@@ -38,6 +38,22 @@ Create a read-only steemit user from createUser.mongo from mongodb shell when mo
 ```
 db.Blockchain.insert({previous:"0000000000000000000000000000000000000000",timestamp:"2016-03-24 16:05:00",witness:"initminer",transaction_merkle_root:"0000000000000000000000000000000000000000",extensions:[],witness_signature: "204f8ad56a8f5cf722a02b035a61b500aa59b9519b2c33c77a80c0a714680a5a5a7a340d909d19996613c5e4ae92146b9add8a7a663eef37d837ef881477313043",transactions:[],block_id:"0000000109833ce528d5bbfb3f6225b39ee10086",signing_key:"STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX",transaction_ids:[],block_num: 1 })
 ```
+
+#### Allow external connection to mongodb
+
+`$nano /etc/mongod.conf`
+
+comment out bindip
+
+`#bindIp 127.0.0.1`
+
+Database name
+
+`export DB_NAME="SteemData"`
+
+#### Run scraper
+
+`screen -dmSL scraper python3 runner.py`
 
 
 
