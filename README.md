@@ -14,7 +14,9 @@ I highly recommend [RoboMongo](https://robomongo.org/) as a GUI utility for expl
 
 ## Deployment
 
-Python 3.5+, pip3 
+Python 3.5+, pip3, mongodb-org 
+
+`$ pip3 install -r requirements.txt` 
 
 ### MongoDB
 
